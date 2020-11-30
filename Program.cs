@@ -37,8 +37,11 @@ namespace ShootingDice
             SmackTalkingPlayer jerk2 = new SmackTalkingPlayer("take this");
             jerk2.Name = "Chad";
 
+            OneHigherPlayer player4 = new OneHigherPlayer();
+            player4.Name = "Bee";
+
             List<Player> players = new List<Player>() {
-                player1, player2, player3, large, jerk1, jerk2
+                player1, player2, player3, large, jerk1, jerk2, player4
             };
 
             PlayMany(players);
@@ -70,7 +73,14 @@ namespace ShootingDice
                 // Make adjacent players play one another
                 Player player1 = shuffledPlayers[i];
                 Player player2 = shuffledPlayers[i + 1];
-                player1.Play(player2);
+                if(player2.Name == "Bee")
+                {
+                    player2.Play(player1);
+                }
+                else
+                {
+                    player1.Play(player2);
+                }
             }
         }
     }
