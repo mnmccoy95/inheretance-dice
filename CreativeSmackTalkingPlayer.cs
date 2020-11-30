@@ -18,7 +18,7 @@ namespace ShootingDice
             static int Number() 
             {
                 Random r = new Random();
-                int genRand= r.Next(1,5);
+                int genRand= r.Next(0,4);
                 return genRand;
             }
             Console.WriteLine($"{Name} says '{Taunts[Number()]}!'");

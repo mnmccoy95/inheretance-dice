@@ -14,23 +14,11 @@ namespace ShootingDice
             Player player2 = new Player();
             player2.Name = "Sue";
 
-            player2.Play(player1);
-
-            Console.WriteLine("-------------------");
-
             Player player3 = new Player();
             player3.Name = "Wilma";
 
-            player3.Play(player2);
-
-            Console.WriteLine("-------------------");
-
             Player large = new LargeDicePlayer();
             large.Name = "Bigun Rollsalot";
-
-            player1.Play(large);
-
-            Console.WriteLine("-------------------");
 
             SmackTalkingPlayer jerk1 = new SmackTalkingPlayer("you suck");
             jerk1.Name = "Kyle";
@@ -46,8 +34,11 @@ namespace ShootingDice
             CreativeSmackTalkingPlayer jerk3 = new CreativeSmackTalkingPlayer();
             jerk3.Name = "Logan";
 
+            SoreLoserPlayer jerk4 = new SoreLoserPlayer();
+            jerk4.Name = "Rich";
+
             List<Player> players = new List<Player>() {
-                player1, player2, player3, large, jerk1, jerk2, player4, me, jerk3
+                player1, player2, player3, large, jerk1, jerk2, player4, me, jerk3, jerk4
             };
 
             PlayMany(players);
@@ -79,13 +70,35 @@ namespace ShootingDice
                 // Make adjacent players play one another
                 Player player1 = shuffledPlayers[i];
                 Player player2 = shuffledPlayers[i + 1];
-                if(player2.Name == "Bee")
+                if(player2.Name == "Bee" && player1.Name == "Rich")
                 {
-                    player2.Play(player1);
+                    Console.WriteLine($"{player1.Name} ate their dice out of spite because they knew they'd lose to {player2.Name}.");
+                }
+                else if(player1.Name == "Bee" && player2.Name == "Rich")
+                {
+                    Console.WriteLine($"{player2.Name} ate their dice out of spite because they knew they'd lose to {player1.Name}.");
+                }
+                else if(player2.Name == "Bee" | player2.Name == "Rich")
+                {
+                    try
+                    {
+                        player2.Play(player1);
+                    }
+                    catch
+                    {
+                        Console.WriteLine($"{player2.Name} sets {player1.Name}'s house on fire.");
+                    }
                 }
                 else
                 {
-                    player1.Play(player2);
+                    try
+                    {
+                        player1.Play(player2);
+                    }
+                    catch
+                    {
+                        Console.WriteLine($"{player1.Name} sets {player2.Name}'s house on fire again.");
+                    }
                 }
             }
         }
