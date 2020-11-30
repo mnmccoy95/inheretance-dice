@@ -40,8 +40,11 @@ namespace ShootingDice
             OneHigherPlayer player4 = new OneHigherPlayer();
             player4.Name = "Bee";
 
+            HumanPlayer me = new HumanPlayer();
+            me.Name = "Mori";
+
             List<Player> players = new List<Player>() {
-                player1, player2, player3, large, jerk1, jerk2, player4
+                player1, player2, player3, large, jerk1, jerk2, player4, me
             };
 
             PlayMany(players);
