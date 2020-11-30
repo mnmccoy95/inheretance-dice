@@ -40,8 +40,11 @@ namespace ShootingDice
             UpperHalfPlayer upper = new UpperHalfPlayer();
             upper.Name = "Chai";
 
+            SoreLoserUpperHalfPlayer upper2 = new SoreLoserUpperHalfPlayer();
+            upper2.Name = "Mike";
+
             List<Player> players = new List<Player>() {
-                player1, player2, player3, large, jerk1, jerk2, player4, me, jerk3, jerk4, upper
+                player1, player2, player3, large, jerk1, jerk2, player4, me, jerk3, jerk4, upper, upper2
             };
 
             PlayMany(players);
@@ -73,15 +76,15 @@ namespace ShootingDice
                 // Make adjacent players play one another
                 Player player1 = shuffledPlayers[i];
                 Player player2 = shuffledPlayers[i + 1];
-                if(player2.Name == "Bee" && player1.Name == "Rich")
+                if(player2.Name == "Bee" && (player1.Name == "Rich" | player1.Name == "Mike"))
                 {
                     Console.WriteLine($"{player1.Name} ate their dice out of spite because they knew they'd lose to {player2.Name}.");
                 }
-                else if(player1.Name == "Bee" && player2.Name == "Rich")
+                else if(player1.Name == "Bee" && (player2.Name == "Rich" | player2.Name == "Mike"))
                 {
                     Console.WriteLine($"{player2.Name} ate their dice out of spite because they knew they'd lose to {player1.Name}.");
                 }
-                else if(player2.Name == "Bee" | player2.Name == "Rich")
+                else if(player2.Name == "Bee" | player2.Name == "Rich" | player2.Name == "Mike")
                 {
                     try
                     {
@@ -89,7 +92,7 @@ namespace ShootingDice
                     }
                     catch
                     {
-                        Console.WriteLine($"{player2.Name} sets {player1.Name}'s house on fire.");
+                        Console.WriteLine($"The loser ate their dice.");
                     }
                 }
                 else
@@ -100,7 +103,7 @@ namespace ShootingDice
                     }
                     catch
                     {
-                        Console.WriteLine($"{player1.Name} sets {player2.Name}'s house on fire again.");
+                        Console.WriteLine($"The loser ate their dice.");
                     }
                 }
             }
